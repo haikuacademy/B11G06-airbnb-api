@@ -10,10 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "jsonwebtoken": "^9.0.2",
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
     "eslint": "^8.56.0",
     "prettier": "^3.2.5",
