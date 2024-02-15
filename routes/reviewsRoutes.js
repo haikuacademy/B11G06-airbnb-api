@@ -8,8 +8,8 @@ router.get('/reviews', (req, res) => {
 
 // Define a GET route for fetching a single user
 router.get('/reviews/1', (req, res) => {
-    res.send({ 'reviewId:1, review: ok'})
+  res.send({ reviewId: 1, rating: 5 })
 })
 
-// Export the router
+// Export the route
 export default router

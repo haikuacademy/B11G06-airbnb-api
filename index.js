@@ -1,7 +1,7 @@
 import express from 'express'
 const app = express()
 
-import reviewsRouter from './routes/reviewRoutes.js'
+import reviewsRouter from './routes/reviewsRoutes.js'
 
 import bookingsRoutes from './routes/bookingsRoutes.js'
 
