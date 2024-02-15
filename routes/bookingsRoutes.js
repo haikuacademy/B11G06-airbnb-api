@@ -7,7 +7,7 @@ router.get('/bookings', (req, res) => {
 })
 
 // Define a GET route for fetching a single user
-router.get('/booking', (req, res) => {
+router.get('/booking/1', (req, res) => {
   res.send('booking 1')
 })
 
