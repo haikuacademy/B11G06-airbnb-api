@@ -9,7 +9,7 @@ router.get('/users', (req, res) => {
         { id: 3, firstName: 'Ross' }
         
     ]
-  res.send(listOfUsers)
+  res.json(listOfUsers)
 })
 
 // Define a GET route for fetching a single user
@@ -18,7 +18,7 @@ router.get('/users/1', (req, res) => {
     { id: 1, firstName: 'Alice' }
     
   ]
-  res.send(user1)
+  res.json(user1)
 })
 
 // Export the router
