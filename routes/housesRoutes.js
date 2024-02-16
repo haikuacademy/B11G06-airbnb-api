@@ -7,14 +7,14 @@ router.get('/houses', (req, res) => {
         { id: 2, price: 1000 },
         { id: 3, price: 75 }
     ]
-    res.send(listOfHouses)
+    res.json(listOfHouses)
 })
 
 router.get('/houses/1', (req, res) => {
     const house1 = [
         {id: 1, price: 100}
     ]
-    res.send(house1)
+    res.json(house1)
 })
 
 export default router
