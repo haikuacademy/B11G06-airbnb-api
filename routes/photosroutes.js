@@ -17,7 +17,7 @@ router.get("/photos", (req, res) => {
 
 // Define a GET route for fetching a single user
 router.get("/photos/1", (req, res) => {
-  res.send({
+  res.json({
     photo_id: "1",
     url: "https://images.pexels.com/photos/2869503/pexels-photo-2869503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   });
