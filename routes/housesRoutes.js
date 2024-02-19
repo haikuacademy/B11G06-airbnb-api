@@ -13,11 +13,9 @@ router.get('/houses', async (req, res) => {
     }
 })
 
-router.get('/houses/1', (req, res) => {
-    const house1 = [
-        {id: 1, price: 100}
-    ]
-    res.json(house1)
+router.get('/houses/:houseId', async (req, res) => {
+    const houseId = await db.query(`SELECT * FROM houses WHERE house_id = ${req.params.houseId}`)
+    res.json(houseId.rows[0])
 })
 
 export default router
