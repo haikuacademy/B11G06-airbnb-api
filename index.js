@@ -1,12 +1,10 @@
 import express from 'express'
-import users from './routes/usersRoutes.js'
-import houses from './routes/housesRoutes.js'
 const app = express()
 
+import users from './routes/usersRoutes.js'
+import houses from './routes/housesRoutes.js'
 import reviewsRouter from './routes/reviewsRoutes.js'
-
 import bookingsRoutes from './routes/bookingsRoutes.js'
-
 import photosRoutes from './routes/photosRoutes.js'
 
 app.use(reviewsRouter)
