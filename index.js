@@ -4,15 +4,14 @@ import houses from "./routes/housesRoutes.js";
 const app = express();
 
 import reviewsRouter from "./routes/reviewsRoutes.js";
+import bookingsRouter from "./routes/bookingsRoutes.js";
+import photosRouter from "./routes/photosRoutes.js";
 
-import bookingsRoutes from "./routes/bookingsRoutes.js";
-
-import photosRoutes from "./routes/photosRoutes.js";
-
-app.use(reviewsRouter);
-app.use(photosRoutes);
-app.use(bookingsRoutes);
 app.use(users);
 app.use(houses);
+
+app.use(reviewsRouter);
+app.use(photosRouter);
+app.use(bookingsRouter);
 
 app.listen(4100, () => console.log("Airbnb API ready on localhost:4100"));
