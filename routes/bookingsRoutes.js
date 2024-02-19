@@ -1,15 +1,17 @@
 import { Router } from 'express'
 const router = Router()
+import db from '../db.js' // import the database connection
 
-// Define a GET route for fetching the list of products
-router.get('/bookings', (req, res) => {
-  res.send('List of bookings')
+router.get('/bookings', async (req, res) => {
+  // don't forget async
+  try {
+    const { rows } = await db.query('SELECT * FROM bookings') // query the database
+    console.log(rows)
+    res.json(rows) // respond with the data
+  } catch (err) {
+    console.error(err.message)
+    res.json(err)
+  }
 })
 
-// Define a GET route for fetching a single user
-router.get('/booking/1', (req, res) => {
-  res.send('booking 1')
-})
-
-// Export the router
 export default router
