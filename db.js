@@ -4,7 +4,7 @@ import { DBURL } from './secrets.js'
 const { Pool } = pg
 
 // Database connection parameters
-const db = new Pool({
+export const db = new Pool({
   ssl: {
     rejectUnauthorized: false
   },
@@ -12,7 +12,6 @@ const db = new Pool({
 
 })
 
-export default db
 
 
 
