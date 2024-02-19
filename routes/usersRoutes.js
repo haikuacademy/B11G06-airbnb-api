@@ -16,9 +16,9 @@ router.get('/users', async (req, res) => {
 
 // Define a GET route for fetching a single user
 router.get('/users/:userId', async (req, res) => {
-  const obj = await db.query(`SELECT * FROM users WHERE user_id = ${req.params.userId}`)
+  const user = await db.query(`SELECT * FROM users WHERE user_id = ${req.params.userId}`)
   // console.log(user)
-  res.json(obj.rows[0])
+  res.json(user.rows[0])
 })
 
 // Export the router
