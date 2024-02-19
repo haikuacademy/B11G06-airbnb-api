@@ -1,16 +1,18 @@
-import express from 'express'
-import users from './routes/usersRoutes.js'
-import houses from './routes/housesRoutes.js'
-const app = express()
+import express from "express";
+import users from "./routes/usersRoutes.js";
+import houses from "./routes/housesRoutes.js";
+const app = express();
 
-import reviewsRouter from './routes/reviewsRoutes.js'
+import reviewsRouter from "./routes/reviewsRoutes.js";
 
-import bookingsRoutes from './routes/bookingsRoutes.js'
+import bookingsRoutes from "./routes/bookingsRoutes.js";
 
-app.use(reviewsRouter)
+import photosRoutes from "./routes/photosRoutes.js";
 
-app.use(bookingsRoutes)
-app.use(users)
-app.use(houses)
+app.use(reviewsRouter);
+app.use(photosRoutes);
+app.use(bookingsRoutes);
+app.use(users);
+app.use(houses);
 
-app.listen(4100, () => console.log('Airbnb API ready on localhost:4100'))
+app.listen(4100, () => console.log("Airbnb API ready on localhost:4100"));
