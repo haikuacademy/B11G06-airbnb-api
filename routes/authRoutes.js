@@ -3,20 +3,20 @@ const router = Router();
 
 // Define a GET route for fetching the list of products
 router.get("/authorizations", (req, res) => {
-  res.send("List of authorizations");
+  res.json("List of authorizations");
 });
 
 // Define a GET route for fetching a single user
 router.get("/signup", (req, res) => {
-  res.send("signup");
+  res.json("signup");
 });
 
 router.get("/login", (req, res) => {
-  res.send("login");
+  res.json("login");
 });
 
 router.get("/logout", (req, res) => {
-  res.send("logout");
+  res.json("logout");
 });
 
 // Export the router
