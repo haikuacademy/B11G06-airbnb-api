@@ -1,5 +1,6 @@
 import { Router } from 'express'
 const router = Router()
+import db from '../db.js'
 
 // Define a GET route for fetching the list of users
 
