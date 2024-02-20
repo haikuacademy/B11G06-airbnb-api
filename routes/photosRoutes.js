@@ -22,6 +22,7 @@ import db from '../db.js' // import the database connection
 //   }
 // })
 
+<<<<<<< Updated upstream
 // // Define a GET route for fetching a single user
 // router.get('/photos/1', (req, res) => {
 //   res.json({
@@ -29,6 +30,15 @@ import db from '../db.js' // import the database connection
 //     url: 'https://images.pexels.com/photos/2869503/pexels-photo-2869503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 //   })
 // })
+=======
+// Define a GET route for fetching a single user
+router.get("/photos/1", (req, res) => {
+  res.json({
+    photo_id: "1",
+    url: "https://images.pexels.com/photos/2869503/pexels-photo-2869503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+  });
+});
+>>>>>>> Stashed changes
 
 // router.get('/photos/2', (req, res) => {
 //   res.json({
