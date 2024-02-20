@@ -4,22 +4,12 @@ import db from '../db.js'
 import { clearConfigCache } from 'prettier'
 
 
-OG HOUSES ROUTE
-router.get('/houses', async (req, res) => {
-    try {
-        const { rows } = await db.query('SELECT * FROM houses')
-        console.log(rows)
-        res.json(rows)
-    } catch (err) {
-        console.error(err.message)
-        res.json(err)
-    }
-})
 
-HOUSE ID ROUTE
+
+//HOUSE ID ROUTE
 router.get('/houses/:results', async (req, res) => {
     try {
-        const results = await db.query(`SELECT * FROM houses WHERE house_id = ${req.params.results}`)
+        const results = await db.query(`SELECT * FROM houses WHERE house_id = ${req.params.house_id}`)
         if (!results.rows.length) {
             throw new Error('House not found')
         }
@@ -30,81 +20,32 @@ router.get('/houses/:results', async (req, res) => {
     }
 })
 
-
-//EXACT LOCATION
-//router.get('/houses', async (req, res) => {
-//     try {
-//         console.log(req.query)
-//         const location = req.query.location
-//         const { rows } = await db.query(
-//             `SELECT * FROM houses WHERE location LIKE '%${location}%'`
-//         )
-//         if (!rows.length) {
-//             throw new Error('There are no houses in that location')
-//         }
-//         res.json(rows)
-//     } catch (err) {
-//         console.error(err.message)
-//         res.json(err.message)
-//     }
-// })
-
-//MAX PRICE
-// router.get('/houses', async (req, res) => {
-//     try {
-//         console.log(req.query)
-//         const max_price = req.query.max_price
-//         const { rows } = await db.query(
-//             `SELECT * FROM houses WHERE price_night <= ${max_price}`
-//         )
-//         if (!rows.length) {
-//             throw new Error('There are no houses below that price')
-//         }
-//         res.json(rows)
-//     } catch (err) {
-//         console.error(err.message)
-//         res.json(err.message)
-//     }
-// })
-
-//MIN ROOMS
-// router.get('/houses', async (req, res) => {
-//     try {
-//         console.log(req.query)
-//         const min_rooms = req.query.min_rooms
-//         const { rows } = await db.query(`
-//     SELECT * FROM houses WHERE bedrooms >= ${min_rooms}
-//     `)
-//         if (!rows.length) {
-//             throw new Error('Sorry, no results')
-//         }
-//         res.json(rows)
-//     } catch (err) {
-//         console.log(err.message)
-//         res.json(err.message)
-//     }
-// })
-
-//SEARCH
-// router.get('/houses', async (req, res) => {
-//     try {
-//         console.log(req.query)
-//         const search = req.query.search
-//         const { rows } = await db.query(`
-//     SELECT * FROM houses WHERE description LIKE '%${search}%'
-//      `)
-//         if (!rows.length) {
-//             throw new Error('Sorry, no results')
-//         }
-//         res.json(rows)
-//     } catch (err) {
-//         console.log(err.message)
-//         res.json(err.message)
-//     }
-// })
-
-
-
-
+router.get('/houses', async (req, res) => {
+    try {
+        let string = 'SELECT * FROM houses'
+        if (req.query.location) {
+            string += ` WHERE location LIKE '%${req.query.location}%'`
+        } if (req.query.max_price) {
+            string += ` AND price_night <= ${req.query.max_price}`
+        } if (req.query.min_rooms) {
+            string += ` AND bedrooms >= ${req.query.min_rooms}`
+        } if (req.query.search) {
+            string += ` AND description LIKE '%${req.query.search}%'`
+        } if (req.query.category) {
+            string += ` ORDER BY ${category}`
+        } if (req.query.category) {
+            string += ` ORDER BY Number(${category}) DESC`
+        }
+        const { rows } = await db.query(string)
+        if (!rows.length) {
+            throw new Error('Results not found')
+        }
+        res.json(rows)
+    } catch (err) {
+        console.log(err.message)
+        res.json(err.message)
+    }
+})
+    
 
 export default router
