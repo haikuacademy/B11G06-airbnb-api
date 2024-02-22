@@ -28,4 +28,20 @@ router.get('/houses/:houseId', async (req, res) => {
     }
 })
 
+router.post('/houses', async (req, res) => { 
+    const { user_id, description, location, bedrooms, bathrooms, price_night } = req.body
+    console.log('req.body', { user_id, description })
+    const queryString = `
+        INSERT INTO houses (user_id, description, location, bedrooms, bathrooms, price_night)
+        VALUES (${user_id}, '${description}', '${location}', ${bedrooms}, ${bathrooms}, ${price_night})
+        RETURNING house_id
+    `
+    try {
+        const result = await db.query(queryString)
+        res.send(result.rows[0])
+    } catch (e) {
+        res.send({error: e.message})
+    }
+})
+
 export default router
