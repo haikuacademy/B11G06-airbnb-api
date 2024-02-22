@@ -24,14 +24,6 @@ router.post('/users', async (req, res) => {
   const { email, password, first_name, last_name, profile_pictureurl } =
     req.body
 
-  console.log('req.body', {
-    email,
-    password,
-    first_name,
-    last_name,
-    profile_pictureurl
-  })
-
   const queryString = `
         INSERT INTO users (email, password, first_name, last_name, profile_pictureurl)
         VALUES ('${email}', '${password}', '${first_name}', '${last_name}', '${profile_pictureurl}')
