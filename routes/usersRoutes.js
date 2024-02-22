@@ -6,10 +6,8 @@ import db from '../db.js'
 router.get('/users', async (req, res) => {
   try {
     const { rows } = await db.query('SELECT * FROM users')
-    console.log(rows)
     res.json(rows)
   } catch (err) {
-    console.error(err.message)
     res.json(err)
   }
 })
@@ -19,7 +17,6 @@ router.get('/users/:userId', async (req, res) => {
   const user = await db.query(
     `SELECT * FROM users WHERE user_id = ${req.params.userId}`
   )
-  // console.log(user)
   res.json(user.rows[0])
 })
 
@@ -41,9 +38,7 @@ router.post('/users', async (req, res) => {
         RETURNING user_id
     `
   try {
-    console.log(queryString)
     const result = await db.query(queryString)
-    console.log(result)
     res.send(result.rows[0])
   } catch (e) {
     res.send({ error: e.message })
