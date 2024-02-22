@@ -11,6 +11,7 @@ import photosRoutes from './routes/photosRoutes.js'
 
 import authRouter from './routes/authRoutes.js'
 
+app.use(express.json())
 app.use(reviewsRouter)
 app.use(photosRoutes)
 app.use(bookingsRoutes)
