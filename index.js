@@ -3,6 +3,10 @@ import users from './routes/usersRoutes.js'
 import houses from './routes/housesRoutes.js'
 const app = express()
 
+// Middleware to parse JSON bodies
+app.use(express.json())
+
+
 import reviewsRouter from './routes/reviewsRoutes.js'
 
 import bookingsRoutes from './routes/bookingsRoutes.js'

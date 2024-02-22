@@ -6,10 +6,8 @@ import db from '../db.js'
 router.get('/users', async (req, res) => {
   try {
     const { rows } = await db.query('SELECT * FROM users')
-    console.log(rows)
     res.json(rows)
   } catch (err) {
-    console.error(err.message)
     res.json(err)
   }
 })
@@ -29,6 +27,22 @@ router.get('/users/:userId', async (req, res) => {
   }
 })
 
+router.post('/users', async (req, res) => {
+  const { email, password, first_name, last_name, profile_pictureurl } =
+    req.body
+
+  const queryString = `
+        INSERT INTO users (email, password, first_name, last_name, profile_pictureurl)
+        VALUES ('${email}', '${password}', '${first_name}', '${last_name}', '${profile_pictureurl}')
+        RETURNING user_id
+    `
+  try {
+    const result = await db.query(queryString)
+    res.send(result.rows[0])
+  } catch (e) {
+    res.send({ error: e.message })
+  }
+})
+
 // Export the router
 export default router
-

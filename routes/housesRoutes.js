@@ -4,18 +4,37 @@ import db from '../db.js'
 import { clearConfigCache } from 'prettier'
 
 //HOUSE ID ROUTE
-router.get('/houses/:results', async (req, res) => {
+router.get('/houses/:houseId', async (req, res) => {
   try {
-    const results = await db.query(
-      `SELECT * FROM houses WHERE house_id = ${req.params.house_id}`
+    console.log('yes coming through')
+    const { rows } = await db.query(
+      `SELECT * FROM houses WHERE house_id = ${req.params.houseId}`
     )
-    if (!results.rows.length) {
+    if (rows[0]) {
+      res.json(rows[0])
+    } else {
       throw new Error('House not found')
     }
-    res.json(results.rows[0])
   } catch (err) {
     console.error(err.message)
-    res.json(err.message)
+    res.json({ error: err.message })
+  }
+})
+
+router.post('/houses', async (req, res) => {
+  const { user_id, description, location, bedrooms, bathrooms, price_night } =
+    req.body
+  console.log('req.body', { user_id, description })
+  const queryString = `
+        INSERT INTO houses (user_id, description, location, bedrooms, bathrooms, price_night)
+        VALUES (${user_id}, '${description}', '${location}', ${bedrooms}, ${bathrooms}, ${price_night})
+        RETURNING house_id
+    `
+  try {
+    const result = await db.query(queryString)
+    res.send(result.rows[0])
+  } catch (e) {
+    res.send({ error: e.message })
   }
 })
 
